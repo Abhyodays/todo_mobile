@@ -1,6 +1,6 @@
 type NavParamList = {
     Account : undefined,
-    Calendar: undefined,
+    CalendarStack: undefined,
     TaskStack: undefined,
     Search:undefined,
     Settings:undefined,

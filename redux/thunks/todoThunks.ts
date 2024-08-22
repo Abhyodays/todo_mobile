@@ -54,8 +54,9 @@ export const updateTodo = createAsyncThunk(
     async(task:Task,{rejectWithValue})=>{
         try{
             const res = await getFromStorage();
-            const allTodos:Task[] = res!= null?res:[];
+            const allTodos:Task[] = res??[];
             const index = allTodos.findIndex(t => t.id===task.id);
+            if(index === -1) throw new Error("Todo not found!")
             allTodos[index] = task;
             await setIntoStorage(allTodos);
             return allTodos;
@@ -63,6 +64,22 @@ export const updateTodo = createAsyncThunk(
         catch(err){
             console.log("Erron in upadating task:", err);
             rejectWithValue("Error in updating task");
+        }
+    }
+)
+
+export const removeTodo = createAsyncThunk(
+    "todos/delete",
+    async (id:string) =>{
+        try{
+            const res = await getFromStorage();
+        const allTodos:Task[] = res ?? [];
+        const newTodos = allTodos.filter(td => td.id != id);
+        await setIntoStorage(newTodos);
+        return newTodos;
+        }
+        catch(err){
+            console.log(err)
         }
     }
 )

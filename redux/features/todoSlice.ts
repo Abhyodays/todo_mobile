@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Task } from "../../types/Task";
-import { addTodo, getAllTodos, updateTodo } from "../thunks/todoThunks";
+import { addTodo, getAllTodos, removeTodo, updateTodo } from "../thunks/todoThunks";
 
 const INITIAL_STATE:Task[]= [];
 
@@ -17,6 +17,9 @@ const todoSlice = createSlice({
             return action.payload
         })
         .addCase(updateTodo.fulfilled, (state, action)=>{
+            return action.payload
+        })
+        .addCase(removeTodo.fulfilled,(state,action)=>{
             return action.payload
         })
     },

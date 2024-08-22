@@ -6,7 +6,7 @@ import styles from "./styles";
 import { Colors } from "../../constants/Colors";
 import { COMPLETED } from "../../constants/TaskStatus";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavParamList } from "../../types/StackNavParamList";
+import { TaskStackNavParamList } from "../../types/TaskStackNavParamList";
 import NavParamList from "../../types/TabNavParamList";
 import { StackNavigationProp } from "@react-navigation/stack";
 type TaskCardProps = {
@@ -15,7 +15,7 @@ type TaskCardProps = {
 }
 const TaskCard = ({ task, onRadioPress }: TaskCardProps) => {
     const isCompleted = task.isCompleted;
-    const navigation = useNavigation<StackNavigationProp<StackNavParamList>>();
+    const navigation = useNavigation<StackNavigationProp<TaskStackNavParamList>>();
     const gotoDetails = (taskId: string) => {
         console.log(taskId)
         navigation.push("TaskDetails", { id: taskId });
@@ -23,11 +23,14 @@ const TaskCard = ({ task, onRadioPress }: TaskCardProps) => {
     return (
         <TouchableOpacity onPress={() => gotoDetails(task.id)}>
             <View style={[styles.card, isCompleted ? { opacity: 0.5 } : null]}>
-                {!isCompleted ?
+                {
                     <TouchableOpacity onPress={() => onRadioPress!(task.id)}>
-                        <Icon name="circle" style={styles.icon} />
-                    </TouchableOpacity> :
-                    <IonIcon name="checkmark-circle" style={styles.icon} />
+                        {!isCompleted ?
+                            <Icon name="circle" style={styles.icon} />
+                            :
+                            <IonIcon name="checkmark-circle" style={styles.icon} />
+                        }
+                    </TouchableOpacity>
                 }
                 <View>
                     <Text style={styles.text}>{task.name}</Text>

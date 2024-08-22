@@ -12,8 +12,7 @@ import { v4 as uuid } from 'uuid';
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
 import NoTaskCard from "../../components/NoTaskCard/NoTaskCard";
 import { addTodo, getAllTodos, updateTodo } from "../../redux/thunks/todoThunks";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavParamList } from "../../types/StackNavParamList";
+import { isDateEqual } from "../../utils/dateUtils";
 
 const Tasks = () => {
     const tasks = useAppSelector(state => state.todos);
@@ -23,13 +22,13 @@ const Tasks = () => {
     const [dateInput, setDateInput] = useState<Date | null>(null);
     const [taskInput, setTaskInput] = useState("");
 
-    const todayTasks = tasks.filter(t => !t.isCompleted);
-    const completedTasks = tasks.filter(t => t.isCompleted);
-
-    const markComplete = (id: string) => {
+    const todayTasks = tasks.filter(t => t.date == null || isDateEqual(t.date, new Date().toJSON()));
+    const uncompletedTasks = todayTasks.filter(t => !t.isCompleted);
+    const completedTasks = todayTasks.filter(t => t.isCompleted);
+    const toggleComplete = (id: string) => {
         let taskToComplete = tasks.find(t => t.id === id);
         if (!taskToComplete) return;
-        taskToComplete = { ...taskToComplete, isCompleted: true };
+        taskToComplete = { ...taskToComplete, isCompleted: !taskToComplete.isCompleted };
         dispatch(updateTodo(taskToComplete));
     }
     const handleAddButtonPress = () => {
@@ -46,11 +45,13 @@ const Tasks = () => {
     }
     const handleSubmit = () => {
         if (!taskInput.trim()) return;
-        const newTask: Task = { categorty: "Personal", date: dateInput ? dateInput.toDateString() : null, id: uuid(), name: taskInput, isCompleted: false, subTasks: [] }
+        console.log("dateInput", dateInput)
+        const newTask: Task = { categorty: "Personal", date: dateInput ? dateInput.toJSON() : null, id: uuid(), name: taskInput, isCompleted: false, subTasks: [] }
         dispatch(addTodo(newTask));
         setTaskInput("");
     }
     const handleConfirmDate = (date: Date) => {
+        console.log('handle')
         setDateInput(date);
         hideDatePicker();
     };
@@ -63,15 +64,15 @@ const Tasks = () => {
             <View>
                 <Text style={CommonStyles.title}>Today</Text>
                 <FlatList
-                    data={todayTasks}
-                    renderItem={({ item }) => <TaskCard task={item} onRadioPress={markComplete} />}
+                    data={uncompletedTasks}
+                    renderItem={({ item }) => <TaskCard task={item} onRadioPress={toggleComplete} />}
                     keyExtractor={(item) => item.id}
                 />
                 {todayTasks.length <= 0 && <NoTaskCard />}
                 <Text style={CommonStyles.title}>Completed</Text>
                 <FlatList
                     data={completedTasks}
-                    renderItem={({ item }) => <TaskCard task={item} />}
+                    renderItem={({ item }) => <TaskCard task={item} onRadioPress={toggleComplete} />}
                 />
             </View>
             <TouchableOpacity style={styles.plus_button} activeOpacity={0.5} onPress={handleAddButtonPress}>
@@ -96,7 +97,7 @@ const Tasks = () => {
                                         mode="date"
                                         onConfirm={handleConfirmDate}
                                         onCancel={hideDatePicker}
-                                    />
+                                        minimumDate={new Date()} />
                                     {/* <Icon name="flow-cascade" size={24} /> */}
                                 </View>
                                 <TouchableOpacity onPress={handleSubmit}>

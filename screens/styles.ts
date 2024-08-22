@@ -12,6 +12,11 @@ const CommonStyles = StyleSheet.create({
         fontWeight:'bold',
         color: Colors.black,
         marginBottom: 20
+    },
+    link:{
+        textDecorationLine:'underline',
+        color:'red',
+        fontSize: 16
     }
 })
 

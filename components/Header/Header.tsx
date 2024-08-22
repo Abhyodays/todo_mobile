@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Colors } from "../../constants/Colors"
 import { useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { StackNavParamList } from "../../types/StackNavParamList"
+import { StackNavParamList } from "../../types/TaskStackNavParamList"
 const Header = () => {
     const navigation = useNavigation<StackNavigationProp<StackNavParamList>>();
     const goBack = () => {

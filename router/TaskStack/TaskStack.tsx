@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack"
-import { StackNavParamList } from "../../types/StackNavParamList";
+import { StackNavParamList } from "../../types/TaskStackNavParamList";
 import Tasks from "../../screens/Tasks/Tasks";
 import TaskDetails from "../../screens/TaskDetails/TaskDetails";
 
