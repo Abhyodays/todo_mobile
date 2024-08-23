@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button, FlatList, KeyboardAvoidingView, Modal, Pressable, StatusBar, Text, TextComponent, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
 import { Task } from "../../types/Task";
 import CommonStyles from "../styles";
@@ -22,7 +22,7 @@ const Tasks = () => {
     const [dateInput, setDateInput] = useState<Date | null>(null);
     const [taskInput, setTaskInput] = useState("");
 
-    const todayTasks = tasks.filter(t => t.date == null || isDateEqual(t.date, new Date().toJSON()));
+    const todayTasks = useMemo(() => tasks.filter(t => t.date == null || isDateEqual(t.date, new Date().toJSON())), [tasks])
     const uncompletedTasks = todayTasks.filter(t => !t.isCompleted);
     const completedTasks = todayTasks.filter(t => t.isCompleted);
     const toggleComplete = (id: string) => {

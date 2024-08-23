@@ -13,7 +13,7 @@ type TaskDetailsOption = {
     onCalendarPress?: () => void
 }
 const TaskDetailsOption = ({ icon, title, value, onCalendarPress }: TaskDetailsOption) => {
-    console.log()
+
     return (
         <View style={styles.container}>
 

@@ -33,7 +33,8 @@ const Calendar = () => {
     return (
         <View style={CommonStyles.container}>
             <CalendarPicker onDateChange={handleDateChange}
-                minDate={today} />
+                initialDate={today}
+            />
             <SectionList
                 sections={[
                     {

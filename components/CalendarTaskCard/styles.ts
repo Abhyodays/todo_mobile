@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     text:{
-        fontSize: 22
+        fontSize: 20
     },
     text_completed:{
         textDecorationLine:'line-through'

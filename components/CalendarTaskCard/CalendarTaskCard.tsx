@@ -5,7 +5,8 @@ import styles from "./styles"
 import Icon from 'react-native-vector-icons/Entypo'
 import { useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { CalendarStackParamList } from "../../types/CalendarStackParamList"
+import { memo } from "react"
+import { MainStackParam } from "../../types/MainStackParamList"
 
 type CalendarTaskCardProps = {
     task: Task
@@ -13,10 +14,10 @@ type CalendarTaskCardProps = {
 
 const CalendarTaskCard = ({ task }: CalendarTaskCardProps) => {
     const isCompleted = task.isCompleted
-    const navigation = useNavigation<StackNavigationProp<CalendarStackParamList>>()
+    const navigation = useNavigation<StackNavigationProp<MainStackParam>>()
     const gotoDetails = (id: string) => {
         if (!id) return;
-        navigation.push("TaskDetails", { id })
+        navigation.navigate("TaskDetails", { id })
     }
     return (
         <TouchableOpacity onPress={() => gotoDetails(task.id)}>
@@ -29,4 +30,4 @@ const CalendarTaskCard = ({ task }: CalendarTaskCardProps) => {
     )
 }
 
-export default CalendarTaskCard;
+export default memo(CalendarTaskCard);

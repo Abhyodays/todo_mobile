@@ -1,12 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native"
-import MainBottomTabs from "./MainBottomTabs/MainBottomTabs"
 import { StatusBar } from "react-native";
+import MainStack from "./MainStack/MainStack";
 
 const Router = () => {
     return (
         <NavigationContainer>
             <StatusBar barStyle='dark-content' backgroundColor="#fff" />
-            <MainBottomTabs />
+            <MainStack />
         </NavigationContainer>
     )
 }
