@@ -22,7 +22,7 @@ const Tasks = () => {
     const [dateInput, setDateInput] = useState<Date | null>(null);
     const [taskInput, setTaskInput] = useState("");
 
-    const todayTasks = useMemo(() => tasks.filter(t => t.date == null || isDateEqual(t.date, new Date().toJSON())), [tasks])
+    const todayTasks = useMemo(() => tasks.filter(t => !t.date || isDateEqual(t.date, new Date().toJSON())), [tasks])
     const uncompletedTasks = todayTasks.filter(t => !t.isCompleted);
     const completedTasks = todayTasks.filter(t => t.isCompleted);
     const toggleComplete = (id: string) => {
