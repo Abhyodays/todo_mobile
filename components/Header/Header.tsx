@@ -13,7 +13,7 @@ const Header = () => {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={goBack}>
-                <Icon name="arrow-back" color={Colors.black} size={24} />
+                <Icon name="arrow-back" color={Colors.black} size={24} testID="back_button" />
             </TouchableOpacity>
             {/* <TouchableOpacity>
                 <Icon name="ellipsis-vertical" color={Colors.black} size={24} />

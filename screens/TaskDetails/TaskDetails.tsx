@@ -65,6 +65,7 @@ const TaskDetails = ({ route }: any) => {
         };
     }, [handleUpdate])
     );
+    console.log("Todo:", todo)
     return (
         <View style={CommonStyles.container}>
             <View style={styles.header_container}>

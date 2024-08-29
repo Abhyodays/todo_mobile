@@ -73,6 +73,7 @@ const Tasks = () => {
                 <FlatList
                     data={completedTasks}
                     renderItem={({ item }) => <TaskCard task={item} onRadioPress={toggleComplete} />}
+                    keyExtractor={(item) => item.id}
                 />
             </View>
             <TouchableOpacity style={styles.plus_button} activeOpacity={0.5} onPress={handleAddButtonPress}>

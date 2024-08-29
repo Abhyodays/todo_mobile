@@ -15,25 +15,24 @@ const TaskCard = ({ task, onRadioPress }: TaskCardProps) => {
     const isCompleted = task.isCompleted;
     const navigation = useNavigation<StackNavigationProp<MainStackParam>>();
     const gotoDetails = (taskId: string) => {
-        console.log(taskId)
         navigation.navigate("TaskDetails", { id: taskId });
     }
     return (
-        <TouchableOpacity onPress={() => gotoDetails(task.id)}>
+        <TouchableOpacity onPress={() => gotoDetails(task.id)} testID="todo_card">
             <View style={[styles.card, isCompleted ? { opacity: 0.5 } : null]}>
                 {
-                    <TouchableOpacity onPress={() => onRadioPress!(task.id)}>
+                    <TouchableOpacity onPress={() => onRadioPress!(task.id)} testID="button_radio">
                         {!isCompleted ?
-                            <Icon name="circle" style={styles.icon} />
+                            <Icon name="circle" style={styles.icon} testID="icon_circle" />
                             :
-                            <IonIcon name="checkmark-circle" style={styles.icon} />
+                            <IonIcon name="checkmark-circle" style={styles.icon} testID="icon_checkmark" />
                         }
                     </TouchableOpacity>
                 }
                 <View >
-                    <Text style={styles.text}>{task.name}</Text>
-                    {task.subTasks.length > 0 &&
-                        <Icon name="flow-cascade" size={16} />}
+                    <Text style={styles.text} testID="todo_name">{task.name}</Text>
+                    {/* {task.subTasks.length > 0 &&
+                        <Icon name="flow-cascade" size={16} />} */}
                 </View>
             </View>
         </TouchableOpacity>

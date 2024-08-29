@@ -2,9 +2,8 @@ import { FlatList, ScrollView, SectionList, Text, View } from "react-native"
 import CommonStyles from "../styles";
 import { useState } from "react";
 import CalendarPicker from 'react-native-calendar-picker';
-import { formatDate, isDateEqual } from "../../utils/dateUtils";
+import { isDateEqual } from "../../utils/dateUtils";
 import { useAppSelector } from "../../hooks/redux_hooks";
-import TaskCard from "../../components/TaskCard/TaskCard";
 import styles from "./styles";
 import { Task } from "../../types/Task";
 import CalendarTaskCard from "../../components/CalendarTaskCard/CalendarTaskCard";
