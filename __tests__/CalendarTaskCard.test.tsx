@@ -2,7 +2,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { fireEvent, render } from '@testing-library/react-native'
 import CalendarTaskCard from '../components/CalendarTaskCard/CalendarTaskCard'
 import { executeNativeBackPress } from 'react-native-screens';
-
+import { mockedState } from '../constants/mockedData';
 
 const mockedUncompleteTodo = { categorty: "Personal", date: "", id: "995bf92b-4f38-47b1-a581-618bb71e8311", isCompleted: false, name: "hvfcfycvhgv", subTasks: [] }
 const mockedNavigate = jest.fn();

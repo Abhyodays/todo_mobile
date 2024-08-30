@@ -19,7 +19,7 @@ const CalendarTaskCard = ({ task }: CalendarTaskCardProps) => {
             navigation.navigate("TaskDetails", { id })
     }
     return (
-        <TouchableOpacity onPress={() => gotoDetails(task.id)} >
+        <TouchableOpacity onPress={() => gotoDetails(task.id)} testID="calendar-task-card">
             <View style={[styles.card, isCompleted ? { opacity: 0.5 } : null]} testID="CalendarTaskCard_container">
                 <Text style={[styles.text, isCompleted ? styles.text_completed : null]} testID="CalendarTaskCard_text">{task.name}</Text>
                 {/* {task.subTasks.length > 0 &&

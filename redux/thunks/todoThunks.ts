@@ -63,14 +63,14 @@ export const updateTodo = createAsyncThunk(
         }
         catch(err){
             console.log("Erron in upadating task:", err);
-            rejectWithValue("Error in updating task");
+            return rejectWithValue("Error in updating task");
         }
     }
 )
 
 export const removeTodo = createAsyncThunk(
     "todos/delete",
-    async (id:string) =>{
+    async (id:string,{rejectWithValue}) =>{
         try{
             const res = await getFromStorage();
         const allTodos:Task[] = res ?? [];
@@ -80,6 +80,7 @@ export const removeTodo = createAsyncThunk(
         }
         catch(err){
             console.log(err)
+            return rejectWithValue("Error in updating task");
         }
     }
 )

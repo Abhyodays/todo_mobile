@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Task } from "../../types/Task";
 import { addTodo, getAllTodos, removeTodo, updateTodo } from "../thunks/todoThunks";
 
@@ -10,16 +10,16 @@ const todoSlice = createSlice({
     reducers:{
     },
     extraReducers(builder) {
-        builder.addCase(getAllTodos.fulfilled, (state,action)=>{
+        builder.addCase(getAllTodos.fulfilled, (state,action:PayloadAction<Task[]>)=>{
             return action.payload;
         })
-        .addCase(addTodo.fulfilled,(state,action)=>{
+        .addCase(addTodo.fulfilled,(state,action:PayloadAction<Task[]>)=>{
             return action.payload
         })
-        .addCase(updateTodo.fulfilled, (state, action)=>{
+        .addCase(updateTodo.fulfilled, (state, action:PayloadAction<Task[]>)=>{
             return action.payload
         })
-        .addCase(removeTodo.fulfilled,(state,action)=>{
+        .addCase(removeTodo.fulfilled,(state,action:PayloadAction<Task[]>)=>{
             return action.payload
         })
     },

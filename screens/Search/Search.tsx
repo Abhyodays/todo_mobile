@@ -7,8 +7,6 @@ import { useState } from "react";
 import CalendarTaskCard from "../../components/CalendarTaskCard/CalendarTaskCard";
 import { useAppSelector } from "../../hooks/redux_hooks";
 import Icon from 'react-native-vector-icons/Ionicons'
-import { Colors } from "../../constants/Colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Search = () => {
     const [searchInput, setSearchInput] = useState("");
@@ -37,10 +35,11 @@ const Search = () => {
                     onEndEditing={() => search(searchInput)}
                     value={searchInput}
                     keyboardType="web-search"
+                    testID="search-input"
                 />
                 {
                     searchInput.length > 0 &&
-                    <Icon name="close" size={24} onPress={handleClear} />
+                    <Icon name="close" size={24} onPress={handleClear} testID="icon-clear" />
                 }
             </View>
             <FlatList

@@ -76,12 +76,12 @@ const Tasks = () => {
                     keyExtractor={(item) => item.id}
                 />
             </View>
-            <TouchableOpacity style={styles.plus_button} activeOpacity={0.5} onPress={handleAddButtonPress}>
+            <TouchableOpacity style={styles.plus_button} activeOpacity={0.5} onPress={handleAddButtonPress} testID="add-task-button">
                 <Icon name="plus" size={24} color={Colors.white} />
             </TouchableOpacity>
-            <Modal visible={modalVisibility} transparent={true} onRequestClose={() => setModalVisibility(false)} animationType="fade">
+            <Modal visible={modalVisibility} transparent={true} onRequestClose={() => setModalVisibility(false)} animationType="fade" testID="modal-container">
                 <StatusBar backgroundColor='rgba(0,0,0,0.4)' />
-                <Pressable style={[styles.modal_container]} onPress={() => setModalVisibility(false)}>
+                <Pressable style={[styles.modal_container]} onPress={() => setModalVisibility(false)} testID="add-task-modal">
                     <Pressable>
                         <KeyboardAvoidingView style={styles.modal} behavior="padding">
                             <View style={styles.input_container}>
