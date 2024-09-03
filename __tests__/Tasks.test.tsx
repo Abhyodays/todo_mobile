@@ -2,7 +2,6 @@ import { fireEvent, render } from '@testing-library/react-native'
 import { renderWithProvider } from '../components/wrappers/renderWithProvider'
 import Tasks from '../screens/Tasks/Tasks'
 import { mockedState } from '../constants/mockedData'
-import { useNavigation } from '@react-navigation/native';
 
 jest.mock('uuid', () => ({ v4: () => '123456789' }));
 jest.mock('@react-navigation/native', () => ({
